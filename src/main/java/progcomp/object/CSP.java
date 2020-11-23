@@ -124,8 +124,8 @@ public class CSP {
 		int compt = 0;
 		int i, j;
 		while (compt < nombreLienSupr) {
-			i = 0 + (int) (Math.random() * ((taille - 0)));
-			j = 0 + (int) (Math.random() * ((taille - 0)));
+			i = 0 + (int) (Math.random() * taille);
+			j = 0 + (int) (Math.random() * taille);
 			if (graph[i][j] != 0) {
 				graph[i][j] = 0;
 				compt++;
@@ -139,8 +139,8 @@ public class CSP {
 		int compt = 0;
 		int i, j;
 		while (compt < nombreDomaineSupr) {
-			i = 0 + (int) (Math.random() * ((tailleDonnes - 0)));
-			j = 0 + (int) (Math.random() * ((tailleDonnes - 0)));
+			i = 0 + (int) (Math.random() * tailleDonnes);
+			j = 0 + (int) (Math.random() * tailleDonnes);
 			if (ensemble[i][j] != null) {
 				ensemble[i][j] = null;
 				compt++;
