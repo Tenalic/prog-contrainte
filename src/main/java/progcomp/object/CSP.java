@@ -139,6 +139,9 @@ public class CSP {
 		this.tailleDonnes = tailleDonnes;
 	}
 
+	/**
+	 * Initialise le graphe
+	 */
 	private void initGraoh() {
 		for (int i = 0; i < taille; i++) {
 			for (int j = 0; j < taille; j++) {
@@ -148,6 +151,11 @@ public class CSP {
 		}
 	}
 
+	/**
+	 * Surpprime des lien entre variable
+	 * 
+	 * @param _densiteContrainte : % de variable a supprimer
+	 */
 	private void suprLien(double _densiteContrainte) {
 		// nombre de lien * % de lien a supr
 		int nombreLienSupr = (int) ((taille * taille - taille) * (1 - _densiteContrainte));
@@ -163,6 +171,12 @@ public class CSP {
 		}
 	}
 
+	/**
+	 * Initialise le domaine
+	 * 
+	 * @param tailleDomaine  : taille du domaine
+	 * @param nombreVariable : nombre de variable
+	 */
 	private void initDomaine(int tailleDomaine, int nombreVariable) {
 		for (int i = 0; i < nombreVariable; i++) {
 			this.domaines.add(new ArrayList<Integer>());
@@ -172,32 +186,12 @@ public class CSP {
 		}
 	}
 
-	private void suprDomaineOld(double _dureteContraintes) {
-		// nombre de valeur * % de lien a supr
-		int nombreDomaineSupr = (int) ((tailleDonnes * tailleDonnes) * (1 - _dureteContraintes));
-		int compt = 0;
-		int i, valeurSupr, indice, indiceCourant;
-		while (compt < nombreDomaineSupr) {
-			indiceCourant = 0;
-			indice = -1;
-			i = 0 + (int) (Math.random() * taille);
-			valeurSupr = (int) (Math.random() * tailleDonnes);
-			if (domaines.get(i) != null) {
-				for (Integer valeur : domaines.get(i)) {
-					if (valeur == valeurSupr) {
-						indice = indiceCourant;
-					} else {
-						indiceCourant++;
-					}
-				}
-				if (indice != -1) {
-					domaines.get(i).remove(indice);
-					compt++;
-				}
-			}
-		}
-	}
-
+	/**
+	 * Suprime des valeur du domaine
+	 * 
+	 * @param _dureteContraintes : dureté des contrainte (% quantité de valeur a
+	 *                           supprimer)
+	 */
 	private void suprDomaine(double _dureteContraintes) {
 		// nombre de valeur * % de lien a supr
 		int nombreDomaineSupr = (int) (this.tailleDonnes * (1 - _dureteContraintes));
@@ -210,6 +204,9 @@ public class CSP {
 		}
 	}
 
+	/**
+	 * initialise les valeurs du domaine
+	 */
 	public void initListDesValeursDomaine() {
 		this.listeDesValeursDomaine = new ArrayList<ArrayList<ArrayList<CoupleEntier>>>();
 		ArrayList<CoupleEntier> liste = new ArrayList<CoupleEntier>();
@@ -224,6 +221,13 @@ public class CSP {
 		}
 	}
 
+	/**
+	 * Genère les contrainte
+	 * 
+	 * @param domaine1 : 1er domaine
+	 * @param domaine2 : 2emme domaine
+	 * @return liste des couples.
+	 */
 	public ArrayList<CoupleEntier> genererListDesCoupleEntier(ArrayList<Integer> domaine1,
 			ArrayList<Integer> domaine2) {
 		ArrayList<CoupleEntier> reponse = new ArrayList<CoupleEntier>();
@@ -243,6 +247,14 @@ public class CSP {
 		this.listeDesValeursDomaine = listeDesValeursDomaine;
 	}
 
+	/**
+	 * Trouve si un couple de valeur entier est présent dans la liste des contrainte
+	 * 
+	 * @param couple : couple a chercher
+	 * @param index  : ligne
+	 * @param value  : solonne
+	 * @return vrai ou faux
+	 */
 	public boolean listeValueContaineCouple(CoupleEntier couple, int index, int value) {
 		for (CoupleEntier c : this.listeDesValeursDomaine.get(index).get(value)) {
 			if (c.getA() == couple.getA() && c.getB() == couple.getB()) {

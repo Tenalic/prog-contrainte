@@ -27,6 +27,7 @@ public class Fonction {
 	}
 
 	/**
+	 * algorithme de backTrackingChronologique
 	 * 
 	 * @param csp
 	 */
@@ -50,8 +51,8 @@ public class Fonction {
 				if (solution.size() > 1) {
 					compt = 0;
 					for (int valeur : solution) {
-						if (!back && (compt == i
-								|| csp.listeValueContaineCouple(new CoupleEntier(x, valeur), i, compt))) {
+						if (!back && (compt < csp.getListeDesValeursDomaine().get(i).size()
+								&& csp.listeValueContaineCouple(new CoupleEntier(x, valeur), i, compt))) {
 							ok = true;
 						} else {
 							ok = false;

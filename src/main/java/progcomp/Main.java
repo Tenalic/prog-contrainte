@@ -3,7 +3,6 @@ package progcomp;
 import java.util.ArrayList;
 
 import progcomp.object.CSP;
-import progcomp.object.CoupleEntier;
 import progcomp.utils.Fonction;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		fonction = new Fonction();
-		CSP csp = fonction.creationCSP(5, 3, 0.5, 0.5);
+		CSP csp = fonction.creationCSP(5, 6, 0.5, 0.5);
 
 		ArrayList<Integer> solution = new ArrayList<Integer>();
 		if (csp != null) {
