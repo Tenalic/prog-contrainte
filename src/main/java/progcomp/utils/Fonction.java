@@ -84,4 +84,11 @@ public class Fonction {
 		return null;
 	}
 
+	public ArrayList<Integer> backJumping(CSP csp) {
+		return null;
+	}
+
+	public ArrayList<Integer> ForwardChecking(CSP csp) {
+		return null;
+	}
 }

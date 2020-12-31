@@ -11,17 +11,20 @@ public class Main {
 
 	public static void main(String[] args) {
 		fonction = new Fonction();
-		CSP csp = fonction.creationCSP(5, 6, 0.5, 0.5);
+		for (int i = 0; i < 100; i++) {
 
-		ArrayList<Integer> solution = new ArrayList<Integer>();
-		if (csp != null) {
-			solution = fonction.backTrackingChronologique(csp);
-			if (solution != null) {
-				for (int v : solution) {
-					System.out.println(v);
+			CSP csp = fonction.creationCSP(10, 15, 0.1, 0.1);
+
+			ArrayList<Integer> solution = new ArrayList<Integer>();
+			if (csp != null) {
+				solution = fonction.backTrackingChronologique(csp);
+				if (solution != null) {
+					for (int v : solution) {
+						System.out.println(v);
+					}
+				} else {
+					System.out.println("Aucune solution de trouvé");
 				}
-			} else {
-				System.out.println("Aucune solution de trouvé");
 			}
 		}
 	}

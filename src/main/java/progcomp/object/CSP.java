@@ -49,7 +49,7 @@ public class CSP {
 	public CSP(int _taille, int _tailleDonnees) {
 		this.taille = _taille;
 		this.graph = new int[_taille][_taille];
-		initGraoh();
+		initGraph();
 		this.tailleDonnes = _tailleDonnees;
 		initDomaine(_tailleDonnees, _taille);
 	}
@@ -66,7 +66,7 @@ public class CSP {
 	public CSP(int _taille, int _tailleDonnees, double _densiteContrainte) {
 		this.taille = _taille;
 		this.graph = new int[_taille][_taille];
-		initGraoh();
+		initGraph();
 		this.tailleDonnes = _tailleDonnees;
 		suprLien(_densiteContrainte);
 		initDomaine(_tailleDonnees, _taille);
@@ -78,14 +78,15 @@ public class CSP {
 	 * valeur possible en fonction de la _tailleDonnes et supprime des valeur en
 	 * fonction de _dureteContraintes
 	 * 
-	 * @param _taille
-	 * @param _tailleDonnees
-	 * @param _densiteContrainte
+	 * @param _taille            : nombre de variables
+	 * @param _tailleDonnees     : taille du domaine
+	 * @param _densiteContrainte : % de lien a supprimer
+	 * @param _dureteContraintes : % de contrainte a supprimer
 	 */
 	public CSP(int _taille, int _tailleDonnees, double _densiteContrainte, double _dureteContraintes) {
 		this.taille = _taille;
 		this.graph = new int[_taille][_taille];
-		initGraoh();
+		initGraph();
 		suprLien(_densiteContrainte);
 		this.tailleDonnes = _tailleDonnees;
 		this.domaines = new ArrayList<ArrayList<Integer>>();
@@ -142,7 +143,7 @@ public class CSP {
 	/**
 	 * Initialise le graphe
 	 */
-	private void initGraoh() {
+	private void initGraph() {
 		for (int i = 0; i < taille; i++) {
 			for (int j = 0; j < taille; j++) {
 				graph[i][j] = 1;
@@ -158,7 +159,7 @@ public class CSP {
 	 */
 	private void suprLien(double _densiteContrainte) {
 		// nombre de lien * % de lien a supr
-		int nombreLienSupr = (int) ((taille * taille - taille) * (1 - _densiteContrainte));
+		int nombreLienSupr = (int) ((taille * taille - taille) * _densiteContrainte);
 		int compt = 0;
 		int i, j;
 		while (compt < nombreLienSupr) {
@@ -194,7 +195,7 @@ public class CSP {
 	 */
 	private void suprDomaine(double _dureteContraintes) {
 		// nombre de valeur * % de lien a supr
-		int nombreDomaineSupr = (int) (this.tailleDonnes * (1 - _dureteContraintes));
+		int nombreDomaineSupr = (int) (this.tailleDonnes * _dureteContraintes);
 		int value;
 		for (int i = 0; i < this.domaines.size(); i++) {
 			for (int j = 0; j < nombreDomaineSupr; j++) {
